@@ -29,13 +29,13 @@ class EventEmitter {
 
     /// Check if element is already there in cache matching all criteria.
     listener = subs.firstWhere((element) =>
-        element.eventName == event && element.callback == callback);
+        element?.eventName == event && element?.callback == callback);
 
     if (null == listener) {
       // Create new element.
       listener = new Listener(event, context, callback, () {
         subs.removeWhere((element) =>
-            element.eventName == event && element.callback == callback);
+            element?.eventName == event && element?.callback == callback);
       });
       this._listeners[event].add(listener);
     }
@@ -68,13 +68,13 @@ class EventEmitter {
       throw ArgumentError.notNull("callback");
     }
 
-    // Check if listeners have the specific event already registered.
-    // if so, then check for the callback registration.
+    /// Check if listeners have the specific event already registered.
+    /// if so, then check for the callback registration.
 
     if (this._listeners.containsKey(eventName)) {
       List<Listener> subs = this._listeners[eventName];
       subs.removeWhere((element) =>
-          element.eventName == eventName && element.callback == callback);
+          element?.eventName == eventName && element?.callback == callback);
     }
   }
 
@@ -89,7 +89,7 @@ class EventEmitter {
     if (this._listeners.containsKey(event)) {
       Event ev = new Event(event, data, sender);
       this._listeners[event].forEach((item) {
-        if (ev.handled) {
+        if (null == item || ev.handled) {
           return;
         }
         item.callback(ev, item.context);
@@ -110,7 +110,7 @@ class EventEmitter {
       throw ArgumentError.notNull("callback");
     }
     this._listeners.forEach((key, lst) {
-      lst.removeWhere((item) => item.callback == callback);
+      lst.removeWhere((item) => item?.callback == callback);
     });
   }
 

@@ -1,5 +1,5 @@
 name: eventify
-version: 0.0.5
+version: 0.0.6
 description: >-
   An event emitter for dart language. 
   This provides funtionality for an event driven development approach. 
