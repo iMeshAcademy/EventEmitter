@@ -24,5 +24,10 @@ class Listener {
   /// The event callback, which the subscriber uses when he register it for.
   final EventCallback callback;
 
+  /// Constructor for Listener.
+  /// This will take four arguments.
+  /// [eventName], [callback] are mandatory.
+  /// [context], [cancel] are optional.
+  /// if [cancel] callback is provided, then the listener can use that to cancel the subscription.
   Listener(this.eventName, this.context, this.callback, this.cancel);
 }

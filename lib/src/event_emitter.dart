@@ -20,14 +20,14 @@ class EventEmitter {
       throw ArgumentError.notNull("callback");
     }
 
-    /// Check if the particular listener is there in the listeners collection
-    /// Return the listener instance, if already registered.
+    // Check if the particular listener is there in the listeners collection
+    // Return the listener instance, if already registered.
     Listener listener;
 
     List<Listener> subs =
         this._listeners.putIfAbsent(event, () => new List<Listener>());
 
-    /// Check if element is already there in cache matching all criteria.
+    // Check if element is already there in cache matching all criteria.
     listener = subs.firstWhere(
         (element) =>
             element?.eventName == event && element?.callback == callback,
@@ -70,8 +70,8 @@ class EventEmitter {
       throw ArgumentError.notNull("callback");
     }
 
-    /// Check if listeners have the specific event already registered.
-    /// if so, then check for the callback registration.
+    // Check if listeners have the specific event already registered.
+    // if so, then check for the callback registration.
 
     if (this._listeners.containsKey(eventName)) {
       List<Listener> subs = this._listeners[eventName];
@@ -126,8 +126,10 @@ class EventEmitter {
     this._listeners.removeWhere((key, val) => key == event);
   }
 
+  /// Get the unique count of events registered in the emitter.
   int get count => this._listeners.length;
 
+  /// Get the list of subscribers for a particular event.
   int getListenersCount(String event) =>
       this._listeners.containsKey(event) ? this._listeners[event].length : 0;
 }

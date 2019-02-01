@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="API docs for the EventEmitter class from the eventify library, for the Dart programming language.">
+  <title>EventEmitter class - eventify library - Dart API</title>
+  <!-- required because all the links are pseudo-absolute -->
+  <base href="..">
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  <link rel="stylesheet" href="static-assets/github.css">
+  <link rel="stylesheet" href="static-assets/styles.css">
+  <link rel="icon" href="static-assets/favicon.png">
+
+</head>
+
+<body>
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="index.html">eventify</a></li>
+    <li><a href="eventify/eventify-library.html">eventify</a></li>
+    <li class="self-crumb">EventEmitter class</li>
+  </ol>
+  <div class="self-name">EventEmitter</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
+    <h5>eventify library</h5>
+    <ol>
+      <li class="section-title"><a href="eventify/eventify-library.html#classes">Classes</a></li>
+      <li><a href="eventify/Event-class.html">Event</a></li>
+      <li><a href="eventify/EventEmitter-class.html">EventEmitter</a></li>
+      <li><a href="eventify/Listener-class.html">Listener</a></li>
+    
+    
+    
+    
+    
+    
+      <li class="section-title"><a href="eventify/eventify-library.html#typedefs">Typedefs</a></li>
+      <li><a href="eventify/CancelEvent.html">CancelEvent</a></li>
+      <li><a href="eventify/EventCallback.html">EventCallback</a></li>
+    
+    </ol>
+  </div>
+
+  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
+      <h1>EventEmitter class </h1>
+
+    
+
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        <dt id="EventEmitter" class="callable">
+          <span class="name"><a href="eventify/EventEmitter/EventEmitter.html">EventEmitter</a></span><span class="signature">()</span>
+        </dt>
+        <dd>
+          
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="count" class="property">
+          <span class="name"><a href="eventify/EventEmitter/count.html">count</a></span>
+          <span class="signature">&#8594; int</span> 
+        </dt>
+        <dd>
+          Get the unique count of events registered in the emitter.
+          <div class="features">read-only</div>
+</dd>
+        <dt id="hashCode" class="property inherited">
+          <span class="name"><a href="eventify/EventEmitter/hashCode.html">hashCode</a></span>
+          <span class="signature">&#8594; int</span> 
+        </dt>
+        <dd class="inherited">
+          The hash code for this object. <a href="eventify/EventEmitter/hashCode.html">[...]</a>
+          <div class="features">read-only, inherited</div>
+</dd>
+        <dt id="runtimeType" class="property inherited">
+          <span class="name"><a href="eventify/EventEmitter/runtimeType.html">runtimeType</a></span>
+          <span class="signature">&#8594; Type</span> 
+        </dt>
+        <dd class="inherited">
+          A representation of the runtime type of the object.
+          <div class="features">read-only, inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        <dt id="clear" class="callable">
+          <span class="name"><a href="eventify/EventEmitter/clear.html">clear</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+          </dt>
+        <dd>
+          Clear all subscribers from the cache.
+          
+</dd>
+        <dt id="emit" class="callable">
+          <span class="name"><a href="eventify/EventEmitter/emit.html">emit</a></span><span class="signature">(<wbr><span class="parameter" id="emit-param-event"><span class="type-annotation">String</span> <span class="parameter-name">event</span>, [</span> <span class="parameter" id="emit-param-sender"><span class="type-annotation">Object</span> <span class="parameter-name">sender</span> = <span class="default-value">null</span>, </span> <span class="parameter" id="emit-param-data"><span class="type-annotation">Object</span> <span class="parameter-name">data</span> = <span class="default-value">null</span></span> ])
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+          </dt>
+        <dd>
+          API to emit events.
+event is a required parameter.
+If sender information is sent, it will be used to intimate user about it.
+          
+</dd>
+        <dt id="getListenersCount" class="callable">
+          <span class="name"><a href="eventify/EventEmitter/getListenersCount.html">getListenersCount</a></span><span class="signature">(<wbr><span class="parameter" id="getListenersCount-param-event"><span class="type-annotation">String</span> <span class="parameter-name">event</span></span>)
+            <span class="returntype parameter">&#8594; int</span>
+          </span>
+          </dt>
+        <dd>
+          Get the list of subscribers for a particular event.
+          
+</dd>
+        <dt id="off" class="callable">
+          <span class="name"><a href="eventify/EventEmitter/off.html">off</a></span><span class="signature">(<wbr><span class="parameter" id="off-param-listener"><span class="type-annotation"><a href="eventify/Listener-class.html">Listener</a></span> <span class="parameter-name">listener</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+          </dt>
+        <dd>
+          Remove event listener from emitter.
+This will unsubscribe the caller from the emitter from any future events.
+Listener should be a valid instance.
+          
+</dd>
+        <dt id="on" class="callable">
+          <span class="name"><a href="eventify/EventEmitter/on.html">on</a></span><span class="signature">(<wbr><span class="parameter" id="on-param-event"><span class="type-annotation">String</span> <span class="parameter-name">event</span>, </span> <span class="parameter" id="on-param-context"><span class="type-annotation">Object</span> <span class="parameter-name">context</span>, </span> <span class="parameter" id="on-param-callback"><span class="type-annotation"><a href="eventify/EventCallback.html">EventCallback</a></span> <span class="parameter-name">callback</span></span>)
+            <span class="returntype parameter">&#8594; <a href="eventify/Listener-class.html">Listener</a></span>
+          </span>
+          </dt>
+        <dd>
+          API to register for notification.
+It is mandatory to pass event name and callback parameters.
+          
+</dd>
+        <dt id="removeAllByCallback" class="callable">
+          <span class="name"><a href="eventify/EventEmitter/removeAllByCallback.html">removeAllByCallback</a></span><span class="signature">(<wbr><span class="parameter" id="removeAllByCallback-param-callback"><span class="type-annotation"><a href="eventify/EventCallback.html">EventCallback</a></span> <span class="parameter-name">callback</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+          </dt>
+        <dd>
+          Remove all listeners which matches with the callback provided.
+It is possible to register for multiple events with a single callback.
+This mechanism makesure that all event registrations would be cancelled which matches the callback.
+          
+</dd>
+        <dt id="removeAllByEvent" class="callable">
+          <span class="name"><a href="eventify/EventEmitter/removeAllByEvent.html">removeAllByEvent</a></span><span class="signature">(<wbr><span class="parameter" id="removeAllByEvent-param-event"><span class="type-annotation">String</span> <span class="parameter-name">event</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+          </dt>
+        <dd>
+          Use this mechanism to remove all subscription for a particular event.
+Caution : This will remove all the listeners from multiple files or classes or modules.
+Think twice before calling this API and make sure you know what you are doing!!!
+          
+</dd>
+        <dt id="removeListener" class="callable">
+          <span class="name"><a href="eventify/EventEmitter/removeListener.html">removeListener</a></span><span class="signature">(<wbr><span class="parameter" id="removeListener-param-eventName"><span class="type-annotation">String</span> <span class="parameter-name">eventName</span>, </span> <span class="parameter" id="removeListener-param-callback"><span class="type-annotation"><a href="eventify/EventCallback.html">EventCallback</a></span> <span class="parameter-name">callback</span></span>)
+            <span class="returntype parameter">&#8594; void</span>
+          </span>
+          </dt>
+        <dd>
+          Unsubscribe from getting any future events from emitter.
+This mechanism uses event name and callback to unsubscribe from all possible events.
+          
+</dd>
+        <dt id="noSuchMethod" class="callable inherited">
+          <span class="name"><a href="eventify/EventEmitter/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation">Invocation</span> <span class="parameter-name">invocation</span></span>)
+            <span class="returntype parameter">&#8594; dynamic</span>
+          </span>
+          </dt>
+        <dd class="inherited">
+          Invoked when a non-existent method or property is accessed. <a href="eventify/EventEmitter/noSuchMethod.html">[...]</a>
+          <div class="features">inherited</div>
+</dd>
+        <dt id="toString" class="callable inherited">
+          <span class="name"><a href="eventify/EventEmitter/toString.html">toString</a></span><span class="signature">(<wbr>)
+            <span class="returntype parameter">&#8594; String</span>
+          </span>
+          </dt>
+        <dd class="inherited">
+          Returns a string representation of this object.
+          <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+          <span class="name"><a href="eventify/EventEmitter/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation">dynamic</span> <span class="parameter-name">other</span></span>)
+            <span class="returntype parameter">&#8594; bool</span>
+          </span>
+          </dt>
+        <dd class="inherited">
+          The equality operator. <a href="eventify/EventEmitter/operator_equals.html">[...]</a>
+          <div class="features">inherited</div>
+</dd>
+      </dl>
+    </section>
+
+
+
+
+  </div> <!-- /.main-content -->
+
+  <div class="col-xs-6 col-sm-6 col-md-2 sidebar sidebar-offcanvas-right">
+    <ol>
+      <li class="section-title"><a href="eventify/EventEmitter-class.html#constructors">Constructors</a></li>
+      <li><a href="eventify/EventEmitter/EventEmitter.html">EventEmitter</a></li>
+    
+      <li class="section-title">
+        <a href="eventify/EventEmitter-class.html#instance-properties">Properties</a>
+      </li>
+      <li><a href="eventify/EventEmitter/count.html">count</a></li>
+      <li class="inherited"><a href="eventify/EventEmitter/hashCode.html">hashCode</a></li>
+      <li class="inherited"><a href="eventify/EventEmitter/runtimeType.html">runtimeType</a></li>
+    
+      <li class="section-title"><a href="eventify/EventEmitter-class.html#instance-methods">Methods</a></li>
+      <li><a href="eventify/EventEmitter/clear.html">clear</a></li>
+      <li><a href="eventify/EventEmitter/emit.html">emit</a></li>
+      <li><a href="eventify/EventEmitter/getListenersCount.html">getListenersCount</a></li>
+      <li><a href="eventify/EventEmitter/off.html">off</a></li>
+      <li><a href="eventify/EventEmitter/on.html">on</a></li>
+      <li><a href="eventify/EventEmitter/removeAllByCallback.html">removeAllByCallback</a></li>
+      <li><a href="eventify/EventEmitter/removeAllByEvent.html">removeAllByEvent</a></li>
+      <li><a href="eventify/EventEmitter/removeListener.html">removeListener</a></li>
+      <li class="inherited"><a href="eventify/EventEmitter/noSuchMethod.html">noSuchMethod</a></li>
+      <li class="inherited"><a href="eventify/EventEmitter/toString.html">toString</a></li>
+    
+      <li class="section-title inherited"><a href="eventify/EventEmitter-class.html#operators">Operators</a></li>
+      <li class="inherited"><a href="eventify/EventEmitter/operator_equals.html">operator ==</a></li>
+    
+    
+    
+    </ol>
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    eventify 0.0.8
+  </span>
+
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="static-assets/typeahead.bundle.min.js"></script>
+<script src="static-assets/highlight.pack.js"></script>
+<script src="static-assets/URI.js"></script>
+<script src="static-assets/script.js"></script>
+
+
+</body>
+
+</html>
