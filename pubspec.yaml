@@ -8,6 +8,7 @@ description: >-
 authors:
 - Ajeesh B Nair <ajeeshklr@gmail.com>
 - iMeshAcademy <imeshconnect@gmail.com>
+homepage: "http://www.imeshconnect.com"
 repository: https://github.com/iMeshAcademy/EventEmitter
 environment:
   sdk: '>=2.0.0 <3.0.0'
