@@ -97,10 +97,14 @@ class EventEmitter {
     }
   }
 
+  /// Clear all subscribers from the cache.
   void clear() {
     this._listeners.clear();
   }
 
+  /// Remove all listeners which matches with the callback provided.
+  /// It is possible to register for multiple events with a single callback.
+  /// This mechanism makesure that all event registrations would be cancelled which matches the callback.
   void removeAllByCallback(EventCallback callback) {
     if (null == callback) {
       throw ArgumentError.notNull("callback");
@@ -110,6 +114,9 @@ class EventEmitter {
     });
   }
 
+  /// Use this mechanism to remove all subscription for a particular event.
+  /// Caution : This will remove all the listeners from multiple files or classes or modules.
+  /// Think twice before calling this API and make sure you know what you are doing!!!
   void removeAllByEvent(String event) {
     if (null == event || event.trim().length == 0) {
       throw ArgumentError.notNull("event");
