@@ -1,3 +1,7 @@
+// Copyright (c) 2019, iMeshAcademy authors.  Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 part of eventify;
 
 ///
@@ -17,12 +21,17 @@ class Event {
   /// This can be very useful while debugging systems with large event queues.
   final Object sender;
 
-  ///
-  /// The context at which the listner want to process the data.
-  /// Perform sanity checks before using this field.
-  ///
-  final Object context;
+  /// Flag to identify whether the event is already handled.
+  /// This is useful if we have event bubbling supported, where in it could be handled in any of the
+  /// inheritance hirearchy or handled in one of the listener.
+  /// Event should not be passed to other listeners if it is already handled by one listener.
+  bool _handled = false;
 
-  Event(this.eventName,
-      [this.eventData = null, this.context = null, this.sender = null]);
+  Event(this.eventName, [this.eventData = null, this.sender = null]);
+
+  /// Getter to fetch handled information.
+  bool get handled => _handled;
+
+  /// Setter to set the handled information. If handled already, then setting this value to false doesn't affect.
+  set handled(bool val) => _handled = _handled || val;
 }

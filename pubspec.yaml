@@ -1,5 +1,5 @@
 name: eventify
-version: 0.0.1
+version: 0.0.5
 description: >-
   An event emitter for dart language. 
   This provides funtionality for an event driven development approach. 
@@ -9,3 +9,5 @@ authors:
 - Ajeesh B Nair <ajeeshklr@gmail.com>
 - iMeshAcademy <imeshconnect@gmail.com>
 repository: https://github.com/iMeshAcademy/EventEmitter
+environment:
+  sdk: '>=2.0.0 <3.0.0'
