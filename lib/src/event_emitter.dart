@@ -90,7 +90,8 @@ class EventEmitter {
 
     if (this._listeners.containsKey(event)) {
       Event ev = new Event(event, data, sender);
-      this._listeners[event].forEach((item) {
+      List<Listener> sublist = this._listeners[event].sublist(0);
+      sublist.forEach((item) {
         if (null == item || ev.handled) {
           return;
         }
