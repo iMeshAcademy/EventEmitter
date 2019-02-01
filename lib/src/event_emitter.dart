@@ -28,8 +28,10 @@ class EventEmitter {
         this._listeners.putIfAbsent(event, () => new List<Listener>());
 
     /// Check if element is already there in cache matching all criteria.
-    listener = subs.firstWhere((element) =>
-        element?.eventName == event && element?.callback == callback);
+    listener = subs.firstWhere(
+        (element) =>
+            element?.eventName == event && element?.callback == callback,
+        orElse: null);
 
     if (null == listener) {
       // Create new element.
