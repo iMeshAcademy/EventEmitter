@@ -31,12 +31,12 @@ class EventEmitter {
     listener = subs.firstWhere(
         (element) =>
             element?.eventName == event && element?.callback == callback,
-        orElse: null);
+        orElse: () => null);
 
     if (null == listener) {
       // Create new element.
       listener = new Listener(event, context, callback, () {
-        subs.removeWhere((element) =>
+        this._listeners[event].removeWhere((element) =>
             element?.eventName == event && element?.callback == callback);
       });
       this._listeners[event].add(listener);
@@ -125,4 +125,9 @@ class EventEmitter {
     }
     this._listeners.removeWhere((key, val) => key == event);
   }
+
+  int get count => this._listeners.length;
+
+  int getListenersCount(String event) =>
+      this._listeners.containsKey(event) ? this._listeners[event].length : 0;
 }
