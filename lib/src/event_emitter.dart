@@ -12,7 +12,7 @@ class EventEmitter {
   /// API to register for notification.
   /// It is mandatory to pass event name and callback parameters.
   Listener on(String event, Object context, EventCallback callback) {
-    if (null == event || event.trim().length == 0) {
+    if (null == event || event.trim().isEmpty) {
       throw ArgumentError.notNull("event");
     }
 
@@ -62,7 +62,7 @@ class EventEmitter {
   /// Unsubscribe from getting any future events from emitter.
   /// This mechanism uses event name and callback to unsubscribe from all possible events.
   void removeListener(String eventName, EventCallback callback) {
-    if (null == eventName || eventName.trim().length == 0) {
+    if (null == eventName || eventName.trim().isEmpty) {
       throw ArgumentError.notNull("eventName");
     }
 
@@ -83,8 +83,8 @@ class EventEmitter {
   /// API to emit events.
   /// event is a required parameter.
   /// If sender information is sent, it will be used to intimate user about it.
-  void emit(String event, [Object sender = null, Object data = null]) {
-    if (null == event || event.trim().length == 0) {
+  void emit(String event, [Object sender, Object data]) {
+    if (null == event || event.trim().isEmpty) {
       throw ArgumentError.notNull("event");
     }
 
@@ -121,7 +121,7 @@ class EventEmitter {
   /// Caution : This will remove all the listeners from multiple files or classes or modules.
   /// Think twice before calling this API and make sure you know what you are doing!!!
   void removeAllByEvent(String event) {
-    if (null == event || event.trim().length == 0) {
+    if (null == event || event.trim().isEmpty) {
       throw ArgumentError.notNull("event");
     }
     this._listeners.removeWhere((key, val) => key == event);

@@ -1,3 +1,5 @@
+# 0.1.3
+- Addressed health and maintenance suggestions.
 # 0.1.2
 - Added additional examples.
 

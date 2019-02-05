@@ -27,7 +27,7 @@ class Event {
   /// Event should not be passed to other listeners if it is already handled by one listener.
   bool _handled = false;
 
-  Event(this.eventName, [this.eventData = null, this.sender = null]);
+  Event(this.eventName, [this.eventData, this.sender]);
 
   /// Getter to fetch handled information.
   bool get handled => _handled;
