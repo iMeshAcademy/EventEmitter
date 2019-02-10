@@ -1,4 +1,8 @@
 # 0.1.3
+- Performance optimization - Observed that in real-time applications, removing event handlers were taking lots of time. Same observed with adding handlers also. 
+- Modified code to use Set, instead of list to provide faster performance.
+- Removed unwanted checks while adding handlers. 
+# 0.1.3
 - Addressed health and maintenance suggestions.
 # 0.1.2
 - Added additional examples.

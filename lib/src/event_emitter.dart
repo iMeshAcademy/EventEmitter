@@ -7,7 +7,7 @@ part of eventify;
 typedef void EventCallback(Event ev, Object context);
 
 class EventEmitter {
-  Map<String, List<Listener>> _listeners = Map<String, List<Listener>>();
+  Map<String, Set<Listener>> _listeners = Map<String, Set<Listener>>();
 
   /// API to register for notification.
   /// It is mandatory to pass event name and callback parameters.
@@ -24,22 +24,18 @@ class EventEmitter {
     // Return the listener instance, if already registered.
     Listener listener;
 
-    List<Listener> subs =
-        this._listeners.putIfAbsent(event, () => new List<Listener>());
-
-    // Check if element is already there in cache matching all criteria.
-    listener = subs.firstWhere(
-        (element) =>
-            element?.eventName == event && element?.callback == callback,
-        orElse: () => null);
+    Set<Listener> subs =
+        this._listeners.putIfAbsent(event, () => new Set<Listener>());
 
     if (null == listener) {
       // Create new element.
       listener = new Listener(event, context, callback, () {
-        this._listeners[event].removeWhere((element) =>
-            element?.eventName == event && element?.callback == callback);
+        subs.remove(listener);
+        if (subs.length == 0) {
+          this._listeners.remove(listener.eventName);
+        }
       });
-      this._listeners[event].add(listener);
+      subs.add(listener);
     }
 
     return listener;
@@ -54,9 +50,9 @@ class EventEmitter {
     }
 
     // Check if the listner has a valid callback for cancelling the subscription.
-    if (null != listener.cancel) {
-      listener.cancel(); // Use the callback to cancel the subscription.
-    }
+    // if (null != listener.cancel) {
+    listener.cancel(); // Use the callback to cancel the subscription.
+    // }
   }
 
   /// Unsubscribe from getting any future events from emitter.
@@ -74,7 +70,7 @@ class EventEmitter {
     // if so, then check for the callback registration.
 
     if (this._listeners.containsKey(eventName)) {
-      List<Listener> subs = this._listeners[eventName];
+      Set<Listener> subs = this._listeners[eventName];
       subs.removeWhere((element) =>
           element?.eventName == eventName && element?.callback == callback);
     }
@@ -90,7 +86,7 @@ class EventEmitter {
 
     if (this._listeners.containsKey(event)) {
       Event ev = new Event(event, data, sender);
-      List<Listener> sublist = this._listeners[event].sublist(0);
+      List<Listener> sublist = this._listeners[event].toList();
       sublist.forEach((item) {
         if (null == item || ev.handled) {
           return;

@@ -5,7 +5,52 @@
 import 'package:eventify/eventify.dart';
 import 'dart:async';
 
+Future parseStores(Object config) {
+  return new Future(() {
+    print("Inside the future.");
+    if (null != config) {
+      Map<String, Map<String, dynamic>> storeConfigs =
+          config as Map<String, Map<String, dynamic>>;
+      storeConfigs.forEach((str, val) {
+        print("${str}:${val}");
+        val.forEach((store, details) {
+          print("${store}:${details}");
+        });
+      });
+    }
+  });
+}
+
 void main() {
+  Map<String, dynamic> data = {
+    "stores": {
+      "store1": {"generator": 1, "config": {}},
+      "store2": {"generator": 2, "config": {}}
+    },
+    "models": {
+      "model1": {"generator": 1, "name": "modelel1", "linkedStore": "store1"}
+    }
+  };
+
+  Function parseModels = (config) {};
+
+  print(data.runtimeType);
+  data.forEach((key, val) {
+    switch (key) {
+      case "stores":
+        parseStores(val).then((res) {
+          print("Store is parsed");
+        });
+        break;
+      case "models":
+        parseModels(val);
+        break;
+      default:
+    }
+  });
+
+  print("After the loop!!");
+
   EventEmitter emitter = new EventEmitter();
   emitter.on("test", null, (ev, context) {
     print("${ev.eventName} - ${ev.eventData}");
