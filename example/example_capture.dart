@@ -4,66 +4,78 @@ import 'package:eventify/eventify.dart';
 
 ExtendedEmitter emitter = new ExtendedEmitter();
 int events = 0;
+int listenerCount = 1000000;
 void main() {
-  // int count = 0;
-
-  // EventCallback cb1 = (ev, context) {
-  //   count++;
-  //   if (count % 2 == 1) {
-  //     ev.handled = true;
-  //   }
-  // };
-
-  // EventCallback cb2 = (ev, context) {
-  //   print("Received event - ${ev.eventName}");
-  //   count++;
-
-  //   if (count >= 10) {
-  //     (ev.eventData as Timer).cancel();
-  //   }
-  // };
-
-  // emitter.on("timer", null, cb1);
-  // emitter.on("timer", null, cb2);
-
-  // emitter.doSomeOperation();
-
   List<TestModel> models = createAMillionRecords();
 
   print("Emitter is going to fire 1000000 events");
-  int start = DateTime.now().microsecondsSinceEpoch;
+  DateTime start = DateTime.now();
   emitter.emit("update");
-  int end = DateTime.now().microsecondsSinceEpoch;
+  Duration end = DateTime.now().difference(start);
 
-  print(
-      "Total time took to emit 1 million events - ${end - start}. Count - $events");
+  print("Total time took to emit 1 million events - ${end}. Count - $events");
   print(
       "Test time to remove all events. Events left - > ${emitter.getListenersCount("update")}");
-  start = DateTime.now().microsecondsSinceEpoch;
+  start = DateTime.now();
   for (var i = 0; i < models.length; i++) {
     var m = models[i];
     emitter.off(m.listener);
     // emitter.removeListener(m.listener.eventName, m.listener.callback);
   }
-  end = DateTime.now().microsecondsSinceEpoch;
+  end = DateTime.now().difference(start);
 
   print(
-      "Total time took to remove 1 million events - ${end - start}. Events left - > ${emitter.getListenersCount("update")}");
+      "Total time took to remove 1 million events - ${end}. Events left - > ${emitter.getListenersCount("update")}");
 
   events = 0;
-  print("Emitter is going to fire 1000000 events");
-  start = DateTime.now().microsecondsSinceEpoch;
+  print("Emitter is going to fire ${listenerCount} events");
+  start = DateTime.now();
   emitter.emit("update");
-  end = DateTime.now().microsecondsSinceEpoch;
+  end = DateTime.now().difference(start);
 
   print(
-      "Total time took to emit 1 million events - ${end - start}. Count - $events");
+      "Total time took to emit ${listenerCount} events - ${end}. Count - $events");
+
+  print(
+      "-------------------------------------------------------------------------------");
+  print(
+      "-------------------------------------------------------------------------------");
+
+  print("Adding $listenerCount listeners to emitter.");
+  models.clear();
+  listenerCount = 10000000;
+  start = DateTime.now();
+  models = createAMillionRecords();
+  end = DateTime.now().difference(start);
+  print(
+      "Total time took to add ${listenerCount}listeners - ${end}. Count - ${models.length}");
+  events = 0;
+
+  print("Emitter is going to fire ${listenerCount} events");
+
+  start = DateTime.now();
+  emitter.emit("update");
+  end = DateTime.now().difference(start);
+
+  print(
+      "Total time took to emit ${listenerCount} events - ${end}. Count - $events");
+
+  events = 0;
+
+  print("Removing $listenerCount listeners from subject using cancel().");
+  start = DateTime.now();
+  for (var i = 0; i < models.length; i++) {
+    var m = models[i];
+    m.listener.cancel();
+  }
+  end = DateTime.now().difference(start);
+  print(
+      "Total time took to remove ${listenerCount} listeners - ${end}. Remaining listeners - ${emitter.getListenersCount("update")}");
 }
 
 List<TestModel> createAMillionRecords() {
-  var count = 1000000;
   List<TestModel> models = <TestModel>[];
-  for (var i = 0; i < count; i++) {
+  for (var i = 0; i < listenerCount; i++) {
     models.add(new TestModel());
   }
 

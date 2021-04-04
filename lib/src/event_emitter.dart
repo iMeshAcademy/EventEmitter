@@ -4,13 +4,20 @@
 
 part of eventify;
 
+/// The callback function to receive event notification.
+/// [ev] - [Event] event emitted by the publisher.
+/// [context] - [Object] passed while registering the subscription as context. This is useful especially when the listener want to receive context information for all future events emitted for the context.
 typedef void EventCallback(Event ev, Object context);
 
+/// This class provides necessary implementations for subscribing and cancelling the event subscriptions and publishing events to the subcribers.
 class EventEmitter {
   Map<String, Set<Listener>> _listeners = Map<String, Set<Listener>>();
 
   /// API to register for notification.
   /// It is mandatory to pass event name and callback parameters.
+  /// [event] - Event name used for the subscription. A valid event name is mandatory.
+  /// [context] - Context information, which need to be sent in all emitted events.
+  /// [callback] - [EventCallback] function registered to receive events emitted from the publisher. A valid callback function is mandatory.
   Listener on(String event, Object context, EventCallback callback) {
     if (null == event || event.trim().isEmpty) {
       throw ArgumentError.notNull("event");
@@ -41,6 +48,7 @@ class EventEmitter {
   /// Remove event listener from emitter.
   /// This will unsubscribe the caller from the emitter from any future events.
   /// Listener should be a valid instance.
+  /// [listener] - [Listener] instance to be removed from the event subscription.
   void off(Listener listener) {
     if (null == listener) {
       throw ArgumentError.notNull("listener");
@@ -73,6 +81,8 @@ class EventEmitter {
 
   /// Unsubscribe from getting any future events from emitter.
   /// This mechanism uses event name and callback to unsubscribe from all possible events.
+  /// [eventName] - Event name for the subscription.
+  /// [callback] - [EventCallback] used when registering subscription using [on] function.
   void removeListener(String eventName, EventCallback callback) {
     if (null == eventName || eventName.trim().isEmpty) {
       throw ArgumentError.notNull("eventName");
@@ -95,6 +105,9 @@ class EventEmitter {
   /// API to emit events.
   /// event is a required parameter.
   /// If sender information is sent, it will be used to intimate user about it.
+  /// [event] - What event needs to be emitted.
+  /// [sender] - The sender who published the event. Ignore if not required.
+  /// [data] - Data the event need to carry. Ignore this argument if no data needs to be sent.
   void emit(String event, [Object sender, Object data]) {
     if (null == event || event.trim().isEmpty) {
       throw ArgumentError.notNull("event");
@@ -119,7 +132,8 @@ class EventEmitter {
 
   /// Remove all listeners which matches with the callback provided.
   /// It is possible to register for multiple events with a single callback.
-  /// This mechanism makesure that all event registrations would be cancelled which matches the callback.
+  /// This mechanism ensure that all event registrations would be cancelled which matches the callback.
+  /// [callback] - The event callback used during subscription.
   void removeAllByCallback(EventCallback callback) {
     if (null == callback) {
       throw ArgumentError.notNull("callback");
@@ -132,6 +146,7 @@ class EventEmitter {
   /// Use this mechanism to remove all subscription for a particular event.
   /// Caution : This will remove all the listeners from multiple files or classes or modules.
   /// Think twice before calling this API and make sure you know what you are doing!!!
+  /// [event] - Event name used during subscription.
   void removeAllByEvent(String event) {
     if (null == event || event.trim().isEmpty) {
       throw ArgumentError.notNull("event");

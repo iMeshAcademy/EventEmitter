@@ -1,5 +1,7 @@
 # 0.1.5
 - Resolved observations in pub.
+- Resolved issues with the cancelation of events.cancel property is now changed to method, to make it consistent with the older implementation, signture of the same is kept as-is. 
+- Updated library documentation.
 # 0.1.4
 - Performance optimization - Observed that in real-time applications, removing event handlers were taking lots of time. Same observed with adding handlers also. 
 - Modified code to use Set, instead of list to provide faster performance.

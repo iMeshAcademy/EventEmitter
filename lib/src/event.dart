@@ -27,6 +27,10 @@ class Event {
   /// Event should not be passed to other listeners if it is already handled by one listener.
   bool _handled = false;
 
+  /// Default constructor for the Event class.
+  /// [eventName] - the name of the event, used to identify the event.
+  /// [eventData] - The data associated with the event.
+  /// [sender] - Identifier to identify who is sending the event.
   Event(this.eventName, [this.eventData, this.sender]);
 
   /// Getter to fetch handled information.
