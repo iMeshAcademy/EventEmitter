@@ -1,4 +1,6 @@
-# 0.1.3
+# 0.1.5
+- Resolved observations in pub.
+# 0.1.4
 - Performance optimization - Observed that in real-time applications, removing event handlers were taking lots of time. Same observed with adding handlers also. 
 - Modified code to use Set, instead of list to provide faster performance.
 - Removed unwanted checks while adding handlers. 

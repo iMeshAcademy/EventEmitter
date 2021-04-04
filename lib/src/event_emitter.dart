@@ -22,21 +22,18 @@ class EventEmitter {
 
     // Check if the particular listener is there in the listeners collection
     // Return the listener instance, if already registered.
-    Listener listener;
 
     Set<Listener> subs =
-        this._listeners.putIfAbsent(event, () => new Set<Listener>());
+        this._listeners.putIfAbsent(event, () => Set<Listener>());
 
-    if (null == listener) {
-      // Create new element.
-      listener = new Listener(event, context, callback, () {
-        subs.remove(listener);
-        if (subs.length == 0) {
-          this._listeners.remove(listener.eventName);
-        }
-      });
-      subs.add(listener);
-    }
+    // Create new element.
+    Listener listener = Listener.Default(event, context, callback);
+
+    listener._cancelCallback = () {
+      this._removeListener(listener);
+    };
+
+    subs.add(listener);
 
     return listener;
   }
@@ -50,9 +47,28 @@ class EventEmitter {
     }
 
     // Check if the listner has a valid callback for cancelling the subscription.
-    // if (null != listener.cancel) {
-    listener.cancel(); // Use the callback to cancel the subscription.
-    // }
+    // Use the callback to cancel the subscription.
+    if (false == listener.cancel()) {
+      // Assuming that subscription was not cancelled, could be that the cancel callback was not registered.
+      // Follow the old trained method to remove the subrscription .
+      this._removeListener(listener);
+    }
+  }
+
+  /// Private method to remove a listener from subject.
+  /// The listener should not be a null object.
+  void _removeListener(Listener listener) {
+    if (null == listener) {
+      throw new ArgumentError.notNull("listener");
+    }
+    if (_listeners.containsKey(listener.eventName)) {
+      var subscribers = _listeners[listener.eventName];
+
+      subscribers.remove(listener);
+      if (subscribers.length == 0) {
+        this._listeners.remove(listener.eventName);
+      }
+    }
   }
 
   /// Unsubscribe from getting any future events from emitter.
@@ -85,7 +101,7 @@ class EventEmitter {
     }
 
     if (this._listeners.containsKey(event)) {
-      Event ev = new Event(event, data, sender);
+      Event ev = Event(event, data, sender);
       List<Listener> sublist = this._listeners[event].toList();
       sublist.forEach((item) {
         if (null == item || ev.handled) {

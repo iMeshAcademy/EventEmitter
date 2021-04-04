@@ -71,13 +71,17 @@ void executeOnEventListnerTest() {
       expect(listener.context, 1);
       expect(listener.eventName, "test");
       expect(listener.callback, cb);
-      expect(listener.cancel != null, true);
 
       emitter.emit("test");
       expect(fired, true);
       fired = false;
       listener.callback(new Event("test"), 1);
       expect(fired, true);
+      fired = false;
+      listener.cancel();
+      emitter.emit("test");
+      expect(fired, false);
+      expect(emitter.count, 0);
     });
 
     test("register multiple listeners of different event", () {

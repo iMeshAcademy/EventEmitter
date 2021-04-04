@@ -13,7 +13,7 @@ typedef void CancelEvent();
 /// Caller can use this Listener interface to cancel the registration or check the state.
 class Listener {
   /// A mechanism to cancel the event.
-  final CancelEvent cancel;
+  CancelEvent _cancelCallback;
 
   /// The event name, the subscriber subscribed to.
   final String eventName;
@@ -27,7 +27,28 @@ class Listener {
   /// Constructor for Listener.
   /// This will take four arguments.
   /// [eventName], [callback] are mandatory.
-  /// [context], [cancel] are optional.
-  /// if [cancel] callback is provided, then the listener can use that to cancel the subscription.
-  Listener(this.eventName, this.context, this.callback, this.cancel);
+  /// [context], [_cancelCallback] are optional.
+  /// if [_cancelCallback] callback is provided, then the listener can use that to cancel the subscription.
+  Listener(this.eventName, this.context, this.callback, this._cancelCallback);
+
+  /// Constructor for Listener.
+  /// This will take four arguments.
+  /// [eventName], [callback] are mandatory.
+  /// [context] is optional.
+  Listener.Default(this.eventName, this.context, this.callback);
+
+  /// Cancel the event subscription with the subject.
+  /// Eventhough the cancel method is called, listener doesn't check the cancellation of the subscription.
+  /// Subscription cancellation shall be implemented in the _cancelCallback function.
+  /// The Default constructor doesn't provide a mechanism to cancel the subscription.
+  /// Use the EventEmitter.on to cancel the suscrition effectively.
+  /// Returns true, if _cancelCallback is successfully executed, false otherwise.
+  bool cancel() {
+    if (null != this._cancelCallback) {
+      this._cancelCallback();
+      return true;
+    }
+
+    return false;
+  }
 }

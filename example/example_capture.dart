@@ -62,7 +62,7 @@ void main() {
 
 List<TestModel> createAMillionRecords() {
   var count = 1000000;
-  List<TestModel> models = new List<TestModel>();
+  List<TestModel> models = <TestModel>[];
   for (var i = 0; i < count; i++) {
     models.add(new TestModel());
   }
