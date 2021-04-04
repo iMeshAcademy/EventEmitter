@@ -2,3 +2,4 @@
 .packages
 pubspec.lock
 .vscode/
+.DS_Store

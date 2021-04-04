@@ -1,0 +1,4 @@
+analyser:
+  enable-experiment:
+    - non-nullable
+    

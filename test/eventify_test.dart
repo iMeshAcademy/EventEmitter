@@ -5,7 +5,7 @@
 import 'package:eventify/eventify.dart';
 import 'package:test/test.dart';
 
-EventEmitter emitter;
+late EventEmitter emitter;
 
 void main() {
   setUp(() {
@@ -28,7 +28,7 @@ void executeOnEventListnerTest() {
       expect(emitter.count, 0);
       bool fired = false;
       dynamic listener = emitter.on("test", null, (ev, cont) {
-        if (ev != null && ev.eventName == "test") {
+        if (ev.eventName == "test") {
           fired = true;
         }
       });
@@ -43,13 +43,12 @@ void executeOnEventListnerTest() {
       expect(emitter.count, 0);
       bool fired = false;
       Listener listener = emitter.on("test", 1, (ev, cont) {
-        if (ev != null && ev.eventName == "test" && cont == 1) {
+        if (ev.eventName == "test" && cont == 1) {
           fired = true;
         }
       });
 
       expect(emitter.count, 1);
-      expect(listener != null, true);
       expect(listener.context, 1);
       emitter.emit("test");
       expect(fired, true);
@@ -59,7 +58,7 @@ void executeOnEventListnerTest() {
       expect(emitter.count, 0);
       bool fired = false;
       EventCallback cb = (ev, cont) {
-        if (ev != null && ev.eventName == "test" && cont == 1) {
+        if (ev.eventName == "test" && cont == 1) {
           fired = true;
         }
       };
@@ -67,11 +66,9 @@ void executeOnEventListnerTest() {
       Listener listener = emitter.on("test", 1, cb);
 
       expect(emitter.count, 1);
-      expect(listener != null, true);
       expect(listener.context, 1);
       expect(listener.eventName, "test");
       expect(listener.callback, cb);
-      expect(listener.cancel != null, true);
 
       emitter.emit("test");
       expect(fired, true);
@@ -85,24 +82,22 @@ void executeOnEventListnerTest() {
       double val = 0;
 
       EventCallback cb = (ev, cont) {
-        if (null != ev) {
-          switch (ev.eventName) {
-            case "add":
-              val += ev.eventData as int;
-              break;
-            case "sub":
-              val -= ev.eventData as int;
+        switch (ev.eventName) {
+          case "add":
+            val += (ev.eventData as int?)!;
+            break;
+          case "sub":
+            val -= (ev.eventData as int?)!;
 
-              break;
-            case "mult":
-              val *= ev.eventData as int;
+            break;
+          case "mult":
+            val *= (ev.eventData as int?)!;
 
-              break;
-            case "div":
-              val /= (ev.eventData as int);
+            break;
+          case "div":
+            val /= (ev.eventData as int?)!;
 
-              break;
-          }
+            break;
         }
       };
 
@@ -112,10 +107,6 @@ void executeOnEventListnerTest() {
       Listener listener4 = emitter.on("div", null, cb);
 
       expect(emitter.count, 4);
-      expect(listener1 != null, true);
-      expect(listener2 != null, true);
-      expect(listener3 != null, true);
-      expect(listener4 != null, true);
 
       expect(listener1 != listener2, true);
       expect(listener3 != listener4, true);
@@ -141,42 +132,34 @@ void executeOnEventListnerTest() {
       double val = 0;
 
       EventCallback cb1 = (ev, cont) {
-        if (null != ev) {
-          switch (ev.eventName) {
-            case "add":
-              val += ev.eventData as int;
-              break;
-          }
+        switch (ev.eventName) {
+          case "add":
+            val += (ev.eventData as int?)!;
+            break;
         }
       };
 
       EventCallback cb2 = (ev, cont) {
-        if (null != ev) {
-          switch (ev.eventName) {
-            case "add":
-              val += ev.eventData as int;
-              break;
-          }
+        switch (ev.eventName) {
+          case "add":
+            val += (ev.eventData as int?)!;
+            break;
         }
       };
 
       EventCallback cb3 = (ev, cont) {
-        if (null != ev) {
-          switch (ev.eventName) {
-            case "add":
-              val += ev.eventData as int;
-              break;
-          }
+        switch (ev.eventName) {
+          case "add":
+            val += (ev.eventData as int?)!;
+            break;
         }
       };
 
       EventCallback cb4 = (ev, cont) {
-        if (null != ev) {
-          switch (ev.eventName) {
-            case "add":
-              val += ev.eventData as int;
-              break;
-          }
+        switch (ev.eventName) {
+          case "add":
+            val += (ev.eventData as int?)!;
+            break;
         }
       };
 
@@ -187,11 +170,6 @@ void executeOnEventListnerTest() {
 
       expect(emitter.count, 1);
       expect(emitter.getListenersCount("add"), 4);
-
-      expect(listener1 != null, true);
-      expect(listener2 != null, true);
-      expect(listener3 != null, true);
-      expect(listener4 != null, true);
 
       expect(listener1 != listener2, true);
       expect(listener3 != listener4, true);
@@ -214,6 +192,47 @@ void executeOnEventListnerTest() {
       emitter.emit("div", null, 10);
       expect(val, 4);
     });
+    test("register multiple sale listeners of same event", () {
+      expect(emitter.count, 0);
+      double val = 0;
+
+      EventCallback cb = (ev, cont) {
+        switch (ev.eventName) {
+          case "add":
+            val += (ev.eventData as int?)!;
+            break;
+        }
+      };
+
+      Listener listener1 = emitter.on("add", null, cb);
+      Listener listener2 = emitter.on("add", null, cb);
+      Listener listener3 = emitter.on("add", null, cb);
+      Listener listener4 = emitter.on("add", null, cb);
+
+      expect(emitter.count, 1);
+      expect(emitter.getListenersCount("add"), 1);
+
+      expect(listener1 == listener2, true);
+      expect(listener3 == listener4, true);
+      expect(listener1 == listener4, true);
+      expect(listener2 == listener4, true);
+      expect(listener2 != listener3, false);
+
+      emitter.emit("add", null, 10);
+      expect(val, 10);
+
+      emitter.emit("add", null, -10);
+      expect(val, 0);
+
+      emitter.emit("add", null, 1);
+      expect(val, 1);
+
+      emitter.emit("add", null, 0);
+      expect(val, 1);
+
+      emitter.emit("div", null, 10);
+      expect(val, 1);
+    }, skip: true);
   }, skip: false);
 }
 
@@ -374,24 +393,22 @@ void executeEmitTest() {
       double val = 0;
 
       EventCallback cb = (ev, cont) {
-        if (null != ev) {
-          switch (ev.eventName) {
-            case "add":
-              val += ev.eventData as int;
-              break;
-            case "sub":
-              val -= ev.eventData as int;
+        switch (ev.eventName) {
+          case "add":
+            val += (ev.eventData as int?)!;
+            break;
+          case "sub":
+            val -= (ev.eventData as int?)!;
 
-              break;
-            case "mult":
-              val *= ev.eventData as int;
+            break;
+          case "mult":
+            val *= (ev.eventData as int?)!;
 
-              break;
-            case "div":
-              val /= (ev.eventData as int);
+            break;
+          case "div":
+            val /= (ev.eventData as int?)!;
 
-              break;
-          }
+            break;
         }
       };
 
@@ -442,42 +459,34 @@ void executeEmitTest() {
       double val = 0;
 
       EventCallback addcb = (ev, cont) {
-        if (null != ev) {
-          switch (ev.eventName) {
-            case "add":
-              val += ev.eventData as int;
-              break;
-          }
+        switch (ev.eventName) {
+          case "add":
+            val += (ev.eventData as int?)!;
+            break;
         }
       };
 
       EventCallback sub = (ev, cont) {
-        if (null != ev) {
-          switch (ev.eventName) {
-            case "sub":
-              val -= ev.eventData as int;
-              break;
-          }
+        switch (ev.eventName) {
+          case "sub":
+            val -= (ev.eventData as int?)!;
+            break;
         }
       };
 
       EventCallback mul = (ev, cont) {
-        if (null != ev) {
-          switch (ev.eventName) {
-            case "mult":
-              val *= ev.eventData as int;
-              break;
-          }
+        switch (ev.eventName) {
+          case "mult":
+            val *= (ev.eventData as int?)!;
+            break;
         }
       };
 
       EventCallback div = (ev, cont) {
-        if (null != ev) {
-          switch (ev.eventName) {
-            case "div":
-              val /= ev.eventData as int;
-              break;
-          }
+        switch (ev.eventName) {
+          case "div":
+            val /= (ev.eventData as int?)!;
+            break;
         }
       };
 

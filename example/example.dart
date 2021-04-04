@@ -8,16 +8,14 @@ import 'dart:async';
 Future parseStores(Object config) {
   return new Future(() {
     print("Inside the future.");
-    if (null != config) {
-      Map<String, Map<String, dynamic>> storeConfigs =
-          config as Map<String, Map<String, dynamic>>;
-      storeConfigs.forEach((str, val) {
-        print("${str}:${val}");
-        val.forEach((store, details) {
-          print("${store}:${details}");
-        });
+    Map<String, Map<String, dynamic>> storeConfigs =
+        config as Map<String, Map<String, dynamic>>;
+    storeConfigs.forEach((str, val) {
+      print("${str}:${val}");
+      val.forEach((store, details) {
+        print("${store}:${details}");
       });
-    }
+    });
   });
 }
 
@@ -63,7 +61,7 @@ void main() {
   ExtendedEmitter timer = new ExtendedEmitter();
   timer.on("timer", null, (ev, context) {
     count++;
-    print("Received ${ev.eventName} event from emitter!");
+    print("Received ${ev.eventName} event from ${ev.sender}!");
     if (count == 10) {
       Timer t = ev.eventData as Timer;
       t.cancel();

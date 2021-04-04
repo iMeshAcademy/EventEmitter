@@ -62,7 +62,7 @@ void main() {
 
 List<TestModel> createAMillionRecords() {
   var count = 1000000;
-  List<TestModel> models = new List<TestModel>();
+  List<TestModel> models = <TestModel>[];
   for (var i = 0; i < count; i++) {
     models.add(new TestModel());
   }
@@ -80,12 +80,12 @@ class ExtendedEmitter extends EventEmitter {
   }
 }
 
-class TestModel {
-  void callback(Event ev, Object cxt) {
-    events++;
-  }
+void callback(Event ev, Object? cxt) {
+  events++;
+}
 
-  Listener listener;
+class TestModel {
+  Listener? listener;
   TestModel() {
     this.listener = emitter.on("update", this, callback);
   }
@@ -95,6 +95,6 @@ class TestModel {
   }
 
   void remove() {
-    emitter.removeListener(listener.eventName, callback);
+    emitter.removeListener(listener!.eventName, callback);
   }
 }
