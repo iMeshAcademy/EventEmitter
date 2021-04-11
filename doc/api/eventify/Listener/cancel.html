@@ -105,8 +105,8 @@ Returns true, if _cancelCallback is successfully executed, false otherwise.</p>
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">bool cancel() {
-  if (null != this._cancelCallback) {
-    this._cancelCallback();
+  if (null != _cancelCallback) {
+    _cancelCallback();
     return true;
   }
 

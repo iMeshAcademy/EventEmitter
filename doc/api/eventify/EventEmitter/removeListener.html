@@ -110,18 +110,18 @@ This mechanism uses event name and callback to unsubscribe from all possible eve
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void removeListener(String eventName, EventCallback callback) {
   if (null == eventName || eventName.trim().isEmpty) {
-    throw ArgumentError.notNull(&quot;eventName&quot;);
+    throw ArgumentError.notNull(&#39;eventName&#39;);
   }
 
   if (null == callback) {
-    throw ArgumentError.notNull(&quot;callback&quot;);
+    throw ArgumentError.notNull(&#39;callback&#39;);
   }
 
   &#47;&#47; Check if listeners have the specific event already registered.
   &#47;&#47; if so, then check for the callback registration.
 
-  if (this._listeners.containsKey(eventName)) {
-    Set&lt;Listener&gt; subs = this._listeners[eventName];
+  if (_listeners.containsKey(eventName)) {
+    var subs = _listeners[eventName];
     subs.removeWhere((element) =&gt;
         element?.eventName == eventName &amp;&amp; element?.callback == callback);
   }

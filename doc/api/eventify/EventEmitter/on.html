@@ -112,24 +112,24 @@ It is mandatory to pass event name and callback parameters.
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">Listener on(String event, Object context, EventCallback callback) {
   if (null == event || event.trim().isEmpty) {
-    throw ArgumentError.notNull(&quot;event&quot;);
+    throw ArgumentError.notNull(&#39;event&#39;);
   }
 
   if (null == callback) {
-    throw ArgumentError.notNull(&quot;callback&quot;);
+    throw ArgumentError.notNull(&#39;callback&#39;);
   }
 
   &#47;&#47; Check if the particular listener is there in the listeners collection
   &#47;&#47; Return the listener instance, if already registered.
 
-  Set&lt;Listener&gt; subs =
-      this._listeners.putIfAbsent(event, () =&gt; Set&lt;Listener&gt;());
+  &#47;&#47; ignore: prefer_collection_literals
+  var subs = _listeners.putIfAbsent(event, () =&gt; Set&lt;Listener&gt;());
 
   &#47;&#47; Create new element.
-  Listener listener = Listener.Default(event, context, callback);
+  var listener = Listener.Default(event, context, callback);
 
   listener._cancelCallback = () {
-    this._removeListener(listener);
+    _removeListener(listener);
   };
 
   subs.add(listener);

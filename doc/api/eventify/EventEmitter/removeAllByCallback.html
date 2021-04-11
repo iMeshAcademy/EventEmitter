@@ -109,9 +109,9 @@ This mechanism ensure that all event registrations would be cancelled which matc
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void removeAllByCallback(EventCallback callback) {
   if (null == callback) {
-    throw ArgumentError.notNull(&quot;callback&quot;);
+    throw ArgumentError.notNull(&#39;callback&#39;);
   }
-  this._listeners.forEach((key, lst) {
+  _listeners.forEach((key, lst) {
     lst.removeWhere((item) =&gt; item?.callback == callback);
   });
 }</code></pre>
