@@ -3,13 +3,13 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart-master
+name: Eventify
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master,null-safety ]
   pull_request:
-    branches: [ master ]
+    branches: [ master,null-safety ]
 
 jobs:
   build:
