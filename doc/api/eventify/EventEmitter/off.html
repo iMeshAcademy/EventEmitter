@@ -89,12 +89,13 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="main-content">
-      <div><h1><span class="kind-method">off</span> method </h1></div>
+      <div><h1><span class="kind-method">off</span> method     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype">void</span>
             <span class="name ">off</span>
-(<wbr><ol class="parameter-list"><li><span class="parameter" id="off-param-listener"><span class="type-annotation"><a href="../../eventify/Listener-class.html">Listener</a></span> <span class="parameter-name">listener</span></span></li>
+(<wbr><ol class="parameter-list"><li><span class="parameter" id="off-param-listener"><span class="type-annotation"><a href="../../eventify/Listener-class.html">Listener</a>?</span> <span class="parameter-name">listener</span></span></li>
 </ol>)
       
     </section>
@@ -107,7 +108,7 @@ Listener should be a valid instance.
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">void off(Listener listener) {
+      <pre class="language-dart"><code class="language-dart">void off(Listener? listener) {
   if (null == listener) {
     throw ArgumentError.notNull(&quot;listener&quot;);
   }
@@ -132,7 +133,7 @@ Listener should be a valid instance.
 <footer>
   <span class="no-break">
     eventify
-      0.1.5
+      1.0.0
   </span>
 
 </footer>

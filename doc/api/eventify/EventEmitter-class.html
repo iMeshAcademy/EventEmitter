@@ -72,7 +72,8 @@
   </div>
 
   <div id="dartdoc-main-content" class="main-content">
-      <div><h1><span class="kind-class">EventEmitter</span> class  </h1></div>
+      <div><h1><span class="kind-class">EventEmitter</span> class     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ </h1></div>
 
     <section class="desc markdown">
       <p>This class provides necessary implementations for subscribing and cancelling the event subscriptions and publishing events to the subcribers.</p>
@@ -136,7 +137,7 @@
                   
 </dd>
         <dt id="emit" class="callable">
-          <span class="name"><a href="../eventify/EventEmitter/emit.html">emit</a></span><span class="signature">(<wbr><span class="parameter" id="emit-param-event"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">event</span>, </span><span class="parameter" id="emit-param-sender">[<span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">sender</span>, </span><span class="parameter" id="emit-param-data"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">data</span>]</span>)
+          <span class="name"><a href="../eventify/EventEmitter/emit.html">emit</a></span><span class="signature">(<wbr><span class="parameter" id="emit-param-event"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">event</span>, </span><span class="parameter" id="emit-param-sender">[<span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/Object-class.html">Object</a>?</span> <span class="parameter-name">sender</span>, </span><span class="parameter" id="emit-param-data"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/Object-class.html">Object</a>?</span> <span class="parameter-name">data</span>]</span>)
             <span class="returntype parameter">&#8594; void</span>
           </span>
                   </dt>
@@ -168,7 +169,7 @@ If sender information is sent, it will be used to intimate user about it.
                   <div class="features">inherited</div>
 </dd>
         <dt id="off" class="callable">
-          <span class="name"><a href="../eventify/EventEmitter/off.html">off</a></span><span class="signature">(<wbr><span class="parameter" id="off-param-listener"><span class="type-annotation"><a href="../eventify/Listener-class.html">Listener</a></span> <span class="parameter-name">listener</span></span>)
+          <span class="name"><a href="../eventify/EventEmitter/off.html">off</a></span><span class="signature">(<wbr><span class="parameter" id="off-param-listener"><span class="type-annotation"><a href="../eventify/Listener-class.html">Listener</a>?</span> <span class="parameter-name">listener</span></span>)
             <span class="returntype parameter">&#8594; void</span>
           </span>
                   </dt>
@@ -180,7 +181,7 @@ Listener should be a valid instance.
                   
 </dd>
         <dt id="on" class="callable">
-          <span class="name"><a href="../eventify/EventEmitter/on.html">on</a></span><span class="signature">(<wbr><span class="parameter" id="on-param-event"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">event</span>, </span><span class="parameter" id="on-param-context"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">context</span>, </span><span class="parameter" id="on-param-callback"><span class="type-annotation"><a href="../eventify/EventCallback.html">EventCallback</a></span> <span class="parameter-name">callback</span></span>)
+          <span class="name"><a href="../eventify/EventEmitter/on.html">on</a></span><span class="signature">(<wbr><span class="parameter" id="on-param-event"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">event</span>, </span><span class="parameter" id="on-param-context"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/Object-class.html">Object</a>?</span> <span class="parameter-name">context</span>, </span><span class="parameter" id="on-param-callback"><span class="type-annotation"><a href="../eventify/EventCallback.html">EventCallback</a></span> <span class="parameter-name">callback</span></span>)
             <span class="returntype parameter">&#8594; <a href="../eventify/Listener-class.html">Listener</a></span>
           </span>
                   </dt>
@@ -301,7 +302,7 @@ This mechanism uses event name and callback to unsubscribe from all possible eve
 <footer>
   <span class="no-break">
     eventify
-      0.1.5
+      1.0.0
   </span>
 
 </footer>

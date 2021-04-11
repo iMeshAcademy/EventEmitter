@@ -7,7 +7,7 @@ part of eventify;
 /// The callback function to receive event notification.
 /// [ev] - [Event] event emitted by the publisher.
 /// [context] - [Object] passed while registering the subscription as context. This is useful especially when the listener want to receive context information for all future events emitted for the context.
-typedef void EventCallback(Event ev, Object context);
+typedef void EventCallback(Event ev, Object? context);
 
 /// This class provides necessary implementations for subscribing and cancelling the event subscriptions and publishing events to the subcribers.
 class EventEmitter {
@@ -18,8 +18,8 @@ class EventEmitter {
   /// [event] - Event name used for the subscription. A valid event name is mandatory.
   /// [context] - Context information, which need to be sent in all emitted events.
   /// [callback] - [EventCallback] function registered to receive events emitted from the publisher. A valid callback function is mandatory.
-  Listener on(String event, Object context, EventCallback callback) {
-    if (null == event || event.trim().isEmpty) {
+  Listener on(String event, Object? context, EventCallback callback) {
+    if (event.trim().isEmpty) {
       throw ArgumentError.notNull("event");
     }
 
@@ -29,13 +29,11 @@ class EventEmitter {
     // Create new element.
     Listener listener = Listener.Default(event, context, callback);
 
+// Apply cancellation callback.
     listener._cancelCallback = () {
       this._removeListener(listener);
     };
 
-    subs.add(listener);
-
-    // }
     subs.add(listener);
     return listener;
   }
@@ -44,7 +42,7 @@ class EventEmitter {
   /// This will unsubscribe the caller from the emitter from any future events.
   /// Listener should be a valid instance.
   /// [listener] - [Listener] instance to be removed from the event subscription.
-  void off(Listener listener) {
+  void off(Listener? listener) {
     if (null == listener) {
       throw ArgumentError.notNull("listener");
     }
@@ -61,11 +59,8 @@ class EventEmitter {
   /// Private method to remove a listener from subject.
   /// The listener should not be a null object.
   void _removeListener(Listener listener) {
-    if (null == listener) {
-      throw new ArgumentError.notNull("listener");
-    }
     if (_listeners.containsKey(listener.eventName)) {
-      var subscribers = _listeners[listener.eventName];
+      var subscribers = _listeners[listener.eventName]!;
 
       subscribers.remove(listener);
       if (subscribers.length == 0) {
@@ -87,7 +82,7 @@ class EventEmitter {
     // if so, then check for the callback registration.
 
     if (this._listeners.containsKey(eventName)) {
-      Set<Listener> subs = this._listeners[eventName];
+      Set<Listener> subs = this._listeners[eventName]!;
       subs.removeWhere((element) =>
           element.eventName == eventName && element.callback == callback);
     }
@@ -99,20 +94,21 @@ class EventEmitter {
   /// [event] - What event needs to be emitted.
   /// [sender] - The sender who published the event. Ignore if not required.
   /// [data] - Data the event need to carry. Ignore this argument if no data needs to be sent.
-  void emit(String event, [Object sender, Object data]) {
-    if (null == event || event.trim().isEmpty) {
+  void emit(String event, [Object? sender, Object? data]) {
+    if (event.trim().isEmpty) {
       throw ArgumentError.notNull("event");
     }
 
     if (this._listeners.containsKey(event)) {
       Event ev = Event(event, data, sender);
-      List<Listener> sublist = this._listeners[event].toList();
-      sublist.forEach((item) {
-        if (ev.handled) {
-          return;
-        }
+      List<Listener> sublist = this._listeners[event]!.toList();
+      for (var i = 0; i < sublist.length; i++) {
+        var item = sublist[i];
         item.callback(ev, item.context);
-      });
+        if (ev.handled) {
+          break;
+        }
+      }
     }
   }
 
@@ -147,5 +143,5 @@ class EventEmitter {
 
   /// Get the list of subscribers for a particular event.
   int getListenersCount(String event) =>
-      this._listeners.containsKey(event) ? this._listeners[event].length : 0;
+      this._listeners.containsKey(event) ? this._listeners[event]!.length : 0;
 }

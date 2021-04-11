@@ -15,11 +15,11 @@ class Event {
 
   /// If the event associated has any event data, then this object holds reference to it.
   /// Few events might not return data. Validate this field before using it.
-  final Object eventData;
+  final Object? eventData;
 
   /// If this field is valid, then it shows who send the event to.
   /// This can be very useful while debugging systems with large event queues.
-  final Object sender;
+  final Object? sender;
 
   /// Flag to identify whether the event is already handled.
   /// This is useful if we have event bubbling supported, where in it could be handled in any of the

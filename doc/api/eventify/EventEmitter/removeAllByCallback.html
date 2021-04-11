@@ -89,7 +89,8 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="main-content">
-      <div><h1><span class="kind-method">removeAllByCallback</span> method </h1></div>
+      <div><h1><span class="kind-method">removeAllByCallback</span> method     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype">void</span>
@@ -108,11 +109,8 @@ This mechanism ensure that all event registrations would be cancelled which matc
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void removeAllByCallback(EventCallback callback) {
-  if (null == callback) {
-    throw ArgumentError.notNull(&quot;callback&quot;);
-  }
   this._listeners.forEach((key, lst) {
-    lst.removeWhere((item) =&gt; item?.callback == callback);
+    lst.removeWhere((item) =&gt; item.callback == callback);
   });
 }</code></pre>
     </section>
@@ -127,7 +125,7 @@ This mechanism ensure that all event registrations would be cancelled which matc
 <footer>
   <span class="no-break">
     eventify
-      0.1.5
+      1.0.0
   </span>
 
 </footer>

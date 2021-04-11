@@ -72,13 +72,14 @@
   </div><!--/.sidebar-offcanvas-left-->
 
   <div id="dartdoc-main-content" class="main-content">
-      <div><h1><span class="kind-typedef">EventCallback</span> typedef  </h1></div>
+      <div><h1><span class="kind-typedef">EventCallback</span> typedef     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ </h1></div>
 
     <section class="multi-line-signature">
         <span class="returntype">void</span>
                 <span class="name ">EventCallback</span>
 (<wbr><ol class="parameter-list"><li><span class="parameter" id="EventCallback-param-ev"><span class="type-annotation"><a href="../eventify/Event-class.html">Event</a></span> <span class="parameter-name">ev</span>, </span></li>
-<li><span class="parameter" id="EventCallback-param-context"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">context</span></span></li>
+<li><span class="parameter" id="EventCallback-param-context"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/Object-class.html">Object</a>?</span> <span class="parameter-name">context</span></span></li>
 </ol>)
     </section>
 
@@ -89,7 +90,7 @@
     </section>
         <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">typedef void EventCallback(Event ev, Object context);</code></pre>
+      <pre class="language-dart"><code class="language-dart">typedef void EventCallback(Event ev, Object? context);</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -102,7 +103,7 @@
 <footer>
   <span class="no-break">
     eventify
-      0.1.5
+      1.0.0
   </span>
 
 </footer>

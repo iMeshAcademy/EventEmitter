@@ -89,7 +89,8 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="main-content">
-      <div><h1><span class="kind-method">removeAllByEvent</span> method </h1></div>
+      <div><h1><span class="kind-method">removeAllByEvent</span> method     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype">void</span>
@@ -108,7 +109,7 @@ Think twice before calling this API and make sure you know what you are doing!!!
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void removeAllByEvent(String event) {
-  if (null == event || event.trim().isEmpty) {
+  if (event.trim().isEmpty) {
     throw ArgumentError.notNull(&quot;event&quot;);
   }
   this._listeners.removeWhere((key, val) =&gt; key == event);
@@ -125,7 +126,7 @@ Think twice before calling this API and make sure you know what you are doing!!!
 <footer>
   <span class="no-break">
     eventify
-      0.1.5
+      1.0.0
   </span>
 
 </footer>

@@ -89,14 +89,15 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="main-content">
-      <div><h1><span class="kind-method">emit</span> method </h1></div>
+      <div><h1><span class="kind-method">emit</span> method     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype">void</span>
             <span class="name ">emit</span>
 (<wbr><ol class="parameter-list"><li><span class="parameter" id="emit-param-event"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">event</span>, </span></li>
-<li><span class="parameter" id="emit-param-sender">[<span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">sender</span>, </span></li>
-<li><span class="parameter" id="emit-param-data"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">data</span>]</span></li>
+<li><span class="parameter" id="emit-param-sender">[<span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/Object-class.html">Object</a>?</span> <span class="parameter-name">sender</span>, </span></li>
+<li><span class="parameter" id="emit-param-data"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/Object-class.html">Object</a>?</span> <span class="parameter-name">data</span>]</span></li>
 </ol>)
       
     </section>
@@ -111,20 +112,21 @@ If sender information is sent, it will be used to intimate user about it.
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">void emit(String event, [Object sender, Object data]) {
-  if (null == event || event.trim().isEmpty) {
+      <pre class="language-dart"><code class="language-dart">void emit(String event, [Object? sender, Object? data]) {
+  if (event.trim().isEmpty) {
     throw ArgumentError.notNull(&quot;event&quot;);
   }
 
   if (this._listeners.containsKey(event)) {
     Event ev = Event(event, data, sender);
-    List&lt;Listener&gt; sublist = this._listeners[event].toList();
-    sublist.forEach((item) {
-      if (null == item || ev.handled) {
-        return;
-      }
+    List&lt;Listener&gt; sublist = this._listeners[event]!.toList();
+    for (var i = 0; i &lt; sublist.length; i++) {
+      var item = sublist[i];
       item.callback(ev, item.context);
-    });
+      if (ev.handled) {
+        break;
+      }
+    }
   }
 }</code></pre>
     </section>
@@ -139,7 +141,7 @@ If sender information is sent, it will be used to intimate user about it.
 <footer>
   <span class="no-break">
     eventify
-      0.1.5
+      1.0.0
   </span>
 
 </footer>

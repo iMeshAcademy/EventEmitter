@@ -15,13 +15,13 @@ typedef void CancelEvent();
  */
 class Listener {
   /// A mechanism to cancel the event.
-  CancelEvent _cancelCallback;
+  CancelEvent? _cancelCallback;
 
   /// The event name, the subscriber subscribed to.
   final String eventName;
 
   /// The context from which subscriber is interested in.
-  final Object context;
+  final Object? context;
 
   /**
    * The event callback, which the subscriber uses when he register it for.
@@ -49,7 +49,7 @@ class Listener {
   /// Returns true, if _cancelCallback is successfully executed, false otherwise.
   bool cancel() {
     if (null != this._cancelCallback) {
-      this._cancelCallback();
+      this._cancelCallback!();
       return true;
     }
 

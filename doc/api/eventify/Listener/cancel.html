@@ -85,7 +85,8 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="main-content">
-      <div><h1><span class="kind-method">cancel</span> method </h1></div>
+      <div><h1><span class="kind-method">cancel</span> method     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype"><a href="https://api.dart.dev/stable/2.12.2/dart-core/bool-class.html">bool</a></span>
@@ -106,7 +107,7 @@ Returns true, if _cancelCallback is successfully executed, false otherwise.</p>
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">bool cancel() {
   if (null != this._cancelCallback) {
-    this._cancelCallback();
+    this._cancelCallback!();
     return true;
   }
 
@@ -124,7 +125,7 @@ Returns true, if _cancelCallback is successfully executed, false otherwise.</p>
 <footer>
   <span class="no-break">
     eventify
-      0.1.5
+      1.0.0
   </span>
 
 </footer>

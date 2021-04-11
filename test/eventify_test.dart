@@ -5,7 +5,7 @@
 import 'package:eventify/eventify.dart';
 import 'package:test/test.dart';
 
-EventEmitter emitter;
+late EventEmitter emitter;
 
 void main() {
   setUp(() {
@@ -89,18 +89,18 @@ void executeOnEventListnerTest() {
       EventCallback cb = (ev, cont) {
         switch (ev.eventName) {
           case "add":
-            val += (ev.eventData as int);
+            val += (ev.eventData as int?)!;
             break;
           case "sub":
-            val -= (ev.eventData as int);
+            val -= (ev.eventData as int?)!;
 
             break;
           case "mult":
-            val *= (ev.eventData as int);
+            val *= (ev.eventData as int?)!;
 
             break;
           case "div":
-            val /= (ev.eventData as int);
+            val /= (ev.eventData as int?)!;
 
             break;
         }
@@ -139,7 +139,7 @@ void executeOnEventListnerTest() {
       EventCallback cb1 = (ev, cont) {
         switch (ev.eventName) {
           case "add":
-            val += (ev.eventData as int);
+            val += (ev.eventData as int?)!;
             break;
         }
       };
@@ -147,7 +147,7 @@ void executeOnEventListnerTest() {
       EventCallback cb2 = (ev, cont) {
         switch (ev.eventName) {
           case "add":
-            val += (ev.eventData as int);
+            val += (ev.eventData as int?)!;
             break;
         }
       };
@@ -155,7 +155,7 @@ void executeOnEventListnerTest() {
       EventCallback cb3 = (ev, cont) {
         switch (ev.eventName) {
           case "add":
-            val += (ev.eventData as int);
+            val += (ev.eventData as int?)!;
             break;
         }
       };
@@ -163,7 +163,7 @@ void executeOnEventListnerTest() {
       EventCallback cb4 = (ev, cont) {
         switch (ev.eventName) {
           case "add":
-            val += (ev.eventData as int);
+            val += (ev.eventData as int?)!;
             break;
         }
       };
@@ -204,7 +204,7 @@ void executeOnEventListnerTest() {
       EventCallback cb = (ev, cont) {
         switch (ev.eventName) {
           case "add":
-            val += (ev.eventData as int);
+            val += (ev.eventData as int?)!;
             break;
         }
       };
@@ -400,18 +400,18 @@ void executeEmitTest() {
       EventCallback cb = (ev, cont) {
         switch (ev.eventName) {
           case "add":
-            val += (ev.eventData as int);
+            val += (ev.eventData as int?)!;
             break;
           case "sub":
-            val -= (ev.eventData as int);
+            val -= (ev.eventData as int?)!;
 
             break;
           case "mult":
-            val *= (ev.eventData as int);
+            val *= (ev.eventData as int?)!;
 
             break;
           case "div":
-            val /= (ev.eventData as int);
+            val /= (ev.eventData as int?)!;
 
             break;
         }
@@ -466,7 +466,7 @@ void executeEmitTest() {
       EventCallback addcb = (ev, cont) {
         switch (ev.eventName) {
           case "add":
-            val += (ev.eventData as int);
+            val += (ev.eventData as int?)!;
             break;
         }
       };
@@ -474,7 +474,7 @@ void executeEmitTest() {
       EventCallback sub = (ev, cont) {
         switch (ev.eventName) {
           case "sub":
-            val -= (ev.eventData as int);
+            val -= (ev.eventData as int?)!;
             break;
         }
       };
@@ -482,7 +482,7 @@ void executeEmitTest() {
       EventCallback mul = (ev, cont) {
         switch (ev.eventName) {
           case "mult":
-            val *= (ev.eventData as int);
+            val *= (ev.eventData as int?)!;
             break;
         }
       };
@@ -490,7 +490,7 @@ void executeEmitTest() {
       EventCallback div = (ev, cont) {
         switch (ev.eventName) {
           case "div":
-            val /= (ev.eventData as int);
+            val /= (ev.eventData as int?)!;
             break;
         }
       };
