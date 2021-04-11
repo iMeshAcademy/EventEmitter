@@ -110,7 +110,7 @@ Listener should be a valid instance.
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void off(Listener? listener) {
   if (null == listener) {
-    throw ArgumentError.notNull(&quot;listener&quot;);
+    throw ArgumentError.notNull(&#39;listener&#39;);
   }
 
   &#47;&#47; Check if the listner has a valid callback for cancelling the subscription.
@@ -118,7 +118,7 @@ Listener should be a valid instance.
   if (false == listener.cancel()) {
     &#47;&#47; Assuming that subscription was not cancelled, could be that the cancel callback was not registered.
     &#47;&#47; Follow the old trained method to remove the subrscription .
-    this._removeListener(listener);
+    _removeListener(listener);
   }
 }</code></pre>
     </section>

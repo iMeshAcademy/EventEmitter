@@ -114,12 +114,12 @@ If sender information is sent, it will be used to intimate user about it.
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void emit(String event, [Object? sender, Object? data]) {
   if (event.trim().isEmpty) {
-    throw ArgumentError.notNull(&quot;event&quot;);
+    throw ArgumentError.notNull(&#39;event&#39;);
   }
 
-  if (this._listeners.containsKey(event)) {
-    Event ev = Event(event, data, sender);
-    List&lt;Listener&gt; sublist = this._listeners[event]!.toList();
+  if (_listeners.containsKey(event)) {
+    var ev = Event(event, data, sender);
+    var sublist = _listeners[event]!.toList();
     for (var i = 0; i &lt; sublist.length; i++) {
       var item = sublist[i];
       item.callback(ev, item.context);

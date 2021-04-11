@@ -113,18 +113,19 @@ It is mandatory to pass event name and callback parameters.
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">Listener on(String event, Object? context, EventCallback callback) {
   if (event.trim().isEmpty) {
-    throw ArgumentError.notNull(&quot;event&quot;);
+    throw ArgumentError.notNull(&#39;event&#39;);
   }
 
-  Set&lt;Listener&gt; subs =
-      this._listeners.putIfAbsent(event, () =&gt; Set&lt;Listener&gt;());
+  var subs =
+      &#47;&#47; ignore: prefer_collection_literals
+      _listeners.putIfAbsent(event, () =&gt; Set&lt;Listener&gt;());
 
   &#47;&#47; Create new element.
-  Listener listener = Listener.Default(event, context, callback);
+  var listener = Listener.Default(event, context, callback);
 
 &#47;&#47; Apply cancellation callback.
   listener._cancelCallback = () {
-    this._removeListener(listener);
+    _removeListener(listener);
   };
 
   subs.add(listener);

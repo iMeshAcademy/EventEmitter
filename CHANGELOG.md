@@ -1,5 +1,6 @@
 # 1.0.0
 - Migrated to null-safety. This package is compatible with null-safety.
+- Resolved observation from linting tool.
 # 0.1.5
 - Resolved observations in pub.
 - Resolved issues with the cancelation of events.cancel property is now changed to method, to make it consistent with the older implementation, signture of the same is kept as-is. 

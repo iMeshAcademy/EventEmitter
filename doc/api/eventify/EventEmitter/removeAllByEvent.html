@@ -110,9 +110,9 @@ Think twice before calling this API and make sure you know what you are doing!!!
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void removeAllByEvent(String event) {
   if (event.trim().isEmpty) {
-    throw ArgumentError.notNull(&quot;event&quot;);
+    throw ArgumentError.notNull(&#39;event&#39;);
   }
-  this._listeners.removeWhere((key, val) =&gt; key == event);
+  _listeners.removeWhere((key, val) =&gt; key == event);
 }</code></pre>
     </section>
 

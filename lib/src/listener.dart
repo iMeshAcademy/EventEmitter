@@ -5,14 +5,12 @@
 part of eventify;
 
 /// Handler for cancelling the event registration.
-typedef void CancelEvent();
+typedef CancelEvent = void Function();
 
-/**
- * Listener is one who listen for specific event.
- * Listener register for notification with EventEmitter
- * Once the listener is registered, a Listener interface is returned back to the caller.
- * Caller can use this Listener interface to cancel the registration or check the state.
- */
+/// Listener is one who listen for specific event.
+/// Listener register for notification with EventEmitter
+/// Once the listener is registered, a Listener interface is returned back to the caller.
+/// Caller can use this Listener interface to cancel the registration or check the state.
 class Listener {
   /// A mechanism to cancel the event.
   CancelEvent? _cancelCallback;
@@ -23,9 +21,7 @@ class Listener {
   /// The context from which subscriber is interested in.
   final Object? context;
 
-  /**
-   * The event callback, which the subscriber uses when he register it for.
-   */
+  /// The event callback, which the subscriber uses when he register it for.
   final EventCallback callback;
 
   /// Constructor for Listener.
@@ -48,8 +44,8 @@ class Listener {
   /// Use the EventEmitter.on to cancel the suscrition effectively.
   /// Returns true, if _cancelCallback is successfully executed, false otherwise.
   bool cancel() {
-    if (null != this._cancelCallback) {
-      this._cancelCallback!();
+    if (null != _cancelCallback) {
+      _cancelCallback!();
       return true;
     }
 
