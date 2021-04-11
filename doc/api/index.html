@@ -3,25 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="generator" content="made with love by dartdoc 0.24.1">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 0.39.0">
   <meta name="description" content="eventify API docs, for the Dart programming language.">
   <title>eventify - Dart API docs</title>
 
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500,400i,400,300|Source+Sans+Pro:400,300,700" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="static-assets/github.css">
   <link rel="stylesheet" href="static-assets/styles.css">
   <link rel="icon" href="static-assets/favicon.png">
 
 </head>
 
-<body>
+<body data-base-href=""
+      data-using-base-href="false">
 
 <div id="overlay-under-drawer"></div>
 
 <header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
-    <li class="self-crumb">eventify package</li>
+    <li><a href="https://github.com/iMeshAcademy">eventify package</a></li>
   </ol>
   <div class="self-name">eventify</div>
   <form class="search navbar-right" role="search">
@@ -31,38 +36,83 @@
 
 <main>
 
-  <div class="col-xs-6 col-sm-3 col-md-2 sidebar sidebar-offcanvas-left">
-    <h5><span class="package-name">eventify</span> <span class="package-kind">package</span></h5>
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+      <form class="search-sidebar" role="search">
+        <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+      </form>
+    </header>
+    
+    <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+      <li><a href="https://github.com/iMeshAcademy">eventify package</a></li>
+    </ol>
+    
+    <h5 class="hidden-xs"><span class="package-name">eventify</span> <span class="package-kind">package</span></h5>
     <ol>
           <li class="section-title">Libraries</li>
           <li><a href="eventify/eventify-library.html">eventify</a></li>
     </ol>
   </div>
 
-  <div class="col-xs-12 col-sm-9 col-md-8 main-content">
+  <div id="dartdoc-main-content" class="main-content">
       <section class="desc markdown">
         <h1 id="eventemitter">EventEmitter</h1>
 <p>EventEmitter for dart. This can be used in any application to register for events and get notified once it is fired.</p>
+<hr>
+<p>This library provide mechanism to register for event notifications with emitter or publisher and get notified in the event of an event.</p>
+<p>One main advantage of the mehanism is that, it support context from where the subscriber is listening. The context could be any additional data the subscriber is interested in.</p>
+<p>Another feature this has is the ability to receive sender information, which could be handy if the subscriber wish to know about the publisher.</p>
+<h2 id="example">Example</h2>
+<pre class="language-Dart"><code class="language-Dart">    void performAddition(){
+
+    }
+
+    EventCallback cb = (ev, cont) {
+        if (null != ev) {
+          switch (ev.eventName) {
+            case "add":
+              performAddition();
+              break;
+          }
+        }
+      };
+
+    EventEmitter emitter = new EventEmitter();
+    Listener listener = emitter.on("add", this , cb);
+
+    emitter.emit("add","keyboard",10);
+
+</code></pre>
+<hr>
+<p>As shown in the above example, it is easy to register for events and get notified once it is triggered.</p>
       </section>
       
-        <section class="summary">
-            <h2>Libraries</h2>
-          <dl>
-            <dt id="eventify">
-              <span class="name"><a href="eventify/eventify-library.html">eventify</a></span> 
-            </dt>
-            <dd>
-              
-            </dd>          </dl>
-        </section>
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="eventify">
+            <span class="name"><a href="eventify/eventify-library.html">eventify</a></span>           
+          </dt>
+          <dd>
+            Eventify library.
+Eventify provides an effective interface for subscribing and emitting events.
+This framework also emits context based events.
+Subscriptions can be cancelled using the default cancellation logic available with subscriber itself. 
+          </dd>
+        </dl>
+      </section>
 
   </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
 
 </main>
 
 <footer>
   <span class="no-break">
-    eventify 0.0.8
+    eventify
+      0.1.5
   </span>
 
 </footer>
@@ -70,7 +120,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="static-assets/typeahead.bundle.min.js"></script>
 <script src="static-assets/highlight.pack.js"></script>
-<script src="static-assets/URI.js"></script>
 <script src="static-assets/script.js"></script>
 
 
