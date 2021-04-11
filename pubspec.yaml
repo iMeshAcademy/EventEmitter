@@ -2,9 +2,6 @@ name: eventify
 version: 0.1.5
 description: >-
   A cancellable event emitter which supports context based event driven programming. 
-authors:
-- Ajeesh B Nair <ajeeshklr@gmail.com>
-- iMeshAcademy <imeshconnect@gmail.com>
 homepage: "https://github.com/iMeshAcademy"
 repository: https://github.com/iMeshAcademy/EventEmitter
 environment:
