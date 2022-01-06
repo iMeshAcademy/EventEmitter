@@ -89,13 +89,14 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="main-content">
-      <div><h1><span class="kind-method">on</span> method </h1></div>
+      <div><h1><span class="kind-method">on</span> method     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype"><a href="../../eventify/Listener-class.html">Listener</a></span>
             <span class="name ">on</span>
 (<wbr><ol class="parameter-list"><li><span class="parameter" id="on-param-event"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">event</span>, </span></li>
-<li><span class="parameter" id="on-param-context"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">context</span>, </span></li>
+<li><span class="parameter" id="on-param-context"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.12.2/dart-core/Object-class.html">Object</a>?</span> <span class="parameter-name">context</span>, </span></li>
 <li><span class="parameter" id="on-param-callback"><span class="type-annotation"><a href="../../eventify/EventCallback.html">EventCallback</a></span> <span class="parameter-name">callback</span></span></li>
 </ol>)
       
@@ -110,30 +111,24 @@ It is mandatory to pass event name and callback parameters.
     
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
-      <pre class="language-dart"><code class="language-dart">Listener on(String event, Object context, EventCallback callback) {
-  if (null == event || event.trim().isEmpty) {
+      <pre class="language-dart"><code class="language-dart">Listener on(String event, Object? context, EventCallback callback) {
+  if (event.trim().isEmpty) {
     throw ArgumentError.notNull(&#39;event&#39;);
   }
 
-  if (null == callback) {
-    throw ArgumentError.notNull(&#39;callback&#39;);
-  }
-
-  &#47;&#47; Check if the particular listener is there in the listeners collection
-  &#47;&#47; Return the listener instance, if already registered.
-
-  &#47;&#47; ignore: prefer_collection_literals
-  var subs = _listeners.putIfAbsent(event, () =&gt; Set&lt;Listener&gt;());
+  var subs =
+      &#47;&#47; ignore: prefer_collection_literals
+      _listeners.putIfAbsent(event, () =&gt; Set&lt;Listener&gt;());
 
   &#47;&#47; Create new element.
   var listener = Listener.Default(event, context, callback);
 
+&#47;&#47; Apply cancellation callback.
   listener._cancelCallback = () {
     _removeListener(listener);
   };
 
   subs.add(listener);
-
   return listener;
 }</code></pre>
     </section>
@@ -148,7 +143,7 @@ It is mandatory to pass event name and callback parameters.
 <footer>
   <span class="no-break">
     eventify
-      0.1.5
+      1.0.0
   </span>
 
 </footer>

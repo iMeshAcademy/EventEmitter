@@ -7,9 +7,9 @@ name: Eventify
 
 on:
   push:
-    branches: [ master, null-safety ]
+    branches: [ master ]
   pull_request:
-    branches: [ master, null-safety ]
+    branches: [ master ]
 
 jobs:
   build:

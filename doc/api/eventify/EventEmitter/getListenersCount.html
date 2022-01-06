@@ -89,7 +89,8 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="main-content">
-      <div><h1><span class="kind-method">getListenersCount</span> method </h1></div>
+      <div><h1><span class="kind-method">getListenersCount</span> method     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype"><a href="https://api.dart.dev/stable/2.12.2/dart-core/int-class.html">int</a></span>
@@ -105,7 +106,7 @@
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">int getListenersCount(String event) =&gt;
-    _listeners.containsKey(event) ? _listeners[event].length : 0;</code></pre>
+    _listeners.containsKey(event) ? _listeners[event]!.length : 0;</code></pre>
     </section>
 
   </div> <!-- /.main-content -->
@@ -118,7 +119,7 @@
 <footer>
   <span class="no-break">
     eventify
-      0.1.5
+      1.0.0
   </span>
 
 </footer>

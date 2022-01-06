@@ -13,13 +13,13 @@ typedef CancelEvent = void Function();
 /// Caller can use this Listener interface to cancel the registration or check the state.
 class Listener {
   /// A mechanism to cancel the event.
-  CancelEvent _cancelCallback;
+  CancelEvent? _cancelCallback;
 
   /// The event name, the subscriber subscribed to.
   final String eventName;
 
   /// The context from which subscriber is interested in.
-  final Object context;
+  final Object? context;
 
   /// The event callback, which the subscriber uses when he register it for.
   final EventCallback callback;
@@ -45,7 +45,7 @@ class Listener {
   /// Returns true, if _cancelCallback is successfully executed, false otherwise.
   bool cancel() {
     if (null != _cancelCallback) {
-      _cancelCallback();
+      _cancelCallback!();
       return true;
     }
 

@@ -89,7 +89,8 @@
   </div><!--/.sidebar-offcanvas-->
 
   <div id="dartdoc-main-content" class="main-content">
-      <div><h1><span class="kind-method">removeListener</span> method </h1></div>
+      <div><h1><span class="kind-method">removeListener</span> method     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
 
     <section class="multi-line-signature">
       <span class="returntype">void</span>
@@ -109,21 +110,17 @@ This mechanism uses event name and callback to unsubscribe from all possible eve
     <section class="summary source-code" id="source">
       <h2><span>Implementation</span></h2>
       <pre class="language-dart"><code class="language-dart">void removeListener(String eventName, EventCallback callback) {
-  if (null == eventName || eventName.trim().isEmpty) {
+  if (eventName.trim().isEmpty) {
     throw ArgumentError.notNull(&#39;eventName&#39;);
-  }
-
-  if (null == callback) {
-    throw ArgumentError.notNull(&#39;callback&#39;);
   }
 
   &#47;&#47; Check if listeners have the specific event already registered.
   &#47;&#47; if so, then check for the callback registration.
 
   if (_listeners.containsKey(eventName)) {
-    var subs = _listeners[eventName];
+    var subs = _listeners[eventName]!;
     subs.removeWhere((element) =&gt;
-        element?.eventName == eventName &amp;&amp; element?.callback == callback);
+        element.eventName == eventName &amp;&amp; element.callback == callback);
   }
 }</code></pre>
     </section>
@@ -138,7 +135,7 @@ This mechanism uses event name and callback to unsubscribe from all possible eve
 <footer>
   <span class="no-break">
     eventify
-      0.1.5
+      1.0.0
   </span>
 
 </footer>

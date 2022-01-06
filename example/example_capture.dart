@@ -66,7 +66,7 @@ void main() {
   start = DateTime.now();
   for (var i = 0; i < models.length; i++) {
     var m = models[i];
-    m.listener.cancel();
+    m.listener!.cancel();
   }
   end = DateTime.now().difference(start);
   print(
@@ -92,12 +92,12 @@ class ExtendedEmitter extends EventEmitter {
   }
 }
 
-class TestModel {
-  void callback(Event ev, Object cxt) {
-    events++;
-  }
+void callback(Event ev, Object? cxt) {
+  events++;
+}
 
-  Listener listener;
+class TestModel {
+  Listener? listener;
   TestModel() {
     this.listener = emitter.on("update", this, callback);
   }
@@ -107,6 +107,6 @@ class TestModel {
   }
 
   void remove() {
-    emitter.removeListener(listener.eventName, callback);
+    emitter.removeListener(listener!.eventName, callback);
   }
 }
