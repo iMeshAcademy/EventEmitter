@@ -1,7 +1,12 @@
-include: package:pedantic/analysis_options.yaml
+include: package:lints/recommended.yaml
+
 analyzer:
   enable-experiment:
     - non-nullable
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
   exclude:
     - example/*.dart
     - test/*.dart

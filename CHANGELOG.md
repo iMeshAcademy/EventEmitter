@@ -1,3 +1,5 @@
+# 1.0.1
+- Resolved lint error with updated lint options.
 # 1.0.0
 - Migrated to null-safety. This package is compatible with null-safety.
 - Resolved observation from linting tool.

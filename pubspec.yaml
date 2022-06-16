@@ -1,5 +1,5 @@
 name: eventify
-version: 1.0.0
+version: 1.0.1
 description: >-
   A cancellable event emitter which supports context based event driven programming. 
 homepage: "https://github.com/iMeshAcademy"
@@ -9,3 +9,4 @@ environment:
 dev_dependencies:
   test: ^1.0.0
   pedantic: ^1.11.0
+  lints: ^1.0.1
